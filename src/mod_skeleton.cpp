@@ -190,11 +190,11 @@ public:
         // Test Event
         if (SkeletonTestPlayerEvent)
         {
-            ChatHandler(player->GetSession()).SendSysMessage("|cff676767[|cffFFFF00Skeleton |cff676767] |r: |cffFFFF00PlayerScript:TestPlayerEvent:OnLogin: |cff00ff00ENABLED");
+            ChatHandler(player->GetSession()).SendSysMessage("|cff676767[|cffFFFFFFSkeleton|cff676767] |r: |cffFFFF00PlayerScript:TestPlayerEvent:OnLogin: |cff00ff00ENABLED");
         }
         else
         {
-            ChatHandler(player->GetSession()).SendSysMessage("|cff676767[|cffFFFF00Skeleton |cff676767] |r: |cffFFFF00PlayerScript:TestPlayerEvent:OnLogin: |cffff6060DISABLED");
+            ChatHandler(player->GetSession()).SendSysMessage("|cff676767[|cffFFFFFFSkeleton|cff676767] |r: |cffFFFF00PlayerScript:TestPlayerEvent:OnLogin: |cffff6060DISABLED");
         }
     }
 };
