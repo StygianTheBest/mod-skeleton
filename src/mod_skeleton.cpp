@@ -83,6 +83,7 @@
 #include "Player.h"
 #include "Object.h"
 
+bool SkeletonEnabled = true;
 bool SkeletonAnnounceModule = true;
 bool SkeletonTestWorldEvent = false;
 bool SkeletonTestPlayerEvent = false;
@@ -116,6 +117,7 @@ public:
     // Load Configuration Settings
     void SetInitialWorldSettings()
     {
+        SkeletonEnabled = sConfigMgr->GetBoolDefault("Skeleton.Enable", true);
         SkeletonAnnounceModule = sConfigMgr->GetBoolDefault("Skeleton.Announce", true);
         SkeletonTestWorldEvent = sConfigMgr->GetBoolDefault("Skeleton.TestWorldEvent", false);
         SkeletonTestPlayerEvent = sConfigMgr->GetBoolDefault("Skeleton.TestPlayerEvent", false);
@@ -131,10 +133,13 @@ public:
 
     void OnLogin(Player* player)
     {
-        // Announce Module
-        if (SkeletonAnnounceModule)
+        if (SkeletonEnabled)
         {
-            ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cffFFFFFFSkeleton |rmodule");
+            // Announce Module
+            if (SkeletonAnnounceModule)
+            {
+                ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cffFFFFFFSkeleton |rmodule");
+            }
         }
     }
 };
@@ -147,23 +152,27 @@ public:
 
     void OnBeforeConfigLoad(bool reload) override
     {
-        // Initialize Module Configuration
+        if (SkeletonEnabled)
+        {
+            // Initialize Module Configuration
+        }
     }
 
     void OnStartup() override
     {
-
-        // Test World Event
-        if (SkeletonTestWorldEvent)
+        if (SkeletonEnabled)
         {
-            //
-        }
-        else
-        {
-            //
+            // Test World Event
+            if (SkeletonTestWorldEvent)
+            {
+                //
+            }
+            else
+            {
+                //
+            }
         }
     }
-
 };
 
 // Example PlayerScript
@@ -174,27 +183,33 @@ public:
 
     void OnFirstLogin(Player* player) override
     {
-        // Test Event
-        if (SkeletonTestPlayerEvent)
+        if (SkeletonEnabled)
         {
-            ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cffFFFFFFSkeleton |rmodule. |cffFFFF00PlayerScript:TestPlayerEvent:OnFirstLogin: |cff00ff00ENABLED");
-        }
-        else
-        {
-            ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cffFFFFFFSkeleton |rmodule. |cffFFFF00PlayerScript:TestPlayerEvent:OnFirstLogin: |cffff6060DISABLED");
+            // Test Event
+            if (SkeletonTestPlayerEvent)
+            {
+                ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cffFFFFFFSkeleton |rmodule. |cffFFFF00PlayerScript:TestPlayerEvent:OnFirstLogin: |cff00ff00ENABLED");
+            }
+            else
+            {
+                ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cffFFFFFFSkeleton |rmodule. |cffFFFF00PlayerScript:TestPlayerEvent:OnFirstLogin: |cffff6060DISABLED");
+            }
         }
     }
 
     void OnLogin(Player* player) override
     {
-        // Test Event
-        if (SkeletonTestPlayerEvent)
+        if (SkeletonEnabled)
         {
-            ChatHandler(player->GetSession()).SendSysMessage("|cff676767[|cffFFFFFFSkeleton|cff676767] |r: |cffFFFF00PlayerScript:TestPlayerEvent:OnLogin: |cff00ff00ENABLED");
-        }
-        else
-        {
-            ChatHandler(player->GetSession()).SendSysMessage("|cff676767[|cffFFFFFFSkeleton|cff676767] |r: |cffFFFF00PlayerScript:TestPlayerEvent:OnLogin: |cffff6060DISABLED");
+            // Test Event
+            if (SkeletonTestPlayerEvent)
+            {
+                ChatHandler(player->GetSession()).SendSysMessage("|cff676767[|cffFFFFFFSkeleton|cff676767] |r: |cffFFFF00PlayerScript:TestPlayerEvent:OnLogin: |cff00ff00ENABLED");
+            }
+            else
+            {
+                ChatHandler(player->GetSession()).SendSysMessage("|cff676767[|cffFFFFFFSkeleton|cff676767] |r: |cffFFFF00PlayerScript:TestPlayerEvent:OnLogin: |cffff6060DISABLED");
+            }
         }
     }
 };
