@@ -17,6 +17,9 @@
 # This is an AzerothCore module template for learning, testing, and development.
 #
 
+# Enable the module
+Skeleton.Enable = 1
+
 # Announce the module to the console
 Skeleton.Announce = 1
 
@@ -24,4 +27,4 @@ Skeleton.Announce = 1
 Skeleton.TestWorldEvent = 0
 
 # Enable PlayerScript event
-Skeleton.TestPlayerEvent = 0
+Skeleton.TestPlayerEvent = 1
